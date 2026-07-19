@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Job Board API - Express + TypeScript + MongoDB",
   "private": true,
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc -p tsconfig.json",
-    "start": "node dist/api/index.js",
+    "start": "node dist/src/index.js",
     "test": "jest --runInBand",
     "test:watch": "jest --watch",
     "lint": "tsc --noEmit",
