@@ -56,7 +56,7 @@ jobs:
 
   deploy-client:
     name: Deploy client to Vercel
-    needs: [check-secrets, server, client]
+    needs: [check-secrets, client]
     if: >
       github.ref == 'refs/heads/main' &&
       github.event_name == 'push' &&
