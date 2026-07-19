@@ -11,6 +11,23 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  check-secrets:
+    name: Check deploy secrets
+    runs-on: ubuntu-latest
+    outputs:
+      client_ready: ${{ steps.check.outputs.client_ready }}
+    steps:
+      - id: check
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID_CLIENT: ${{ secrets.VERCEL_PROJECT_ID_CLIENT }}
+        run: |
+          if [ -n "$VERCEL_TOKEN" ] && [ -n "$VERCEL_PROJECT_ID_CLIENT" ]; then
+            echo "client_ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "client_ready=false" >> "$GITHUB_OUTPUT"
+          fi
+
   client:
     name: Client – lint, build
     runs-on: ubuntu-latest
@@ -39,8 +56,11 @@ jobs:
 
   deploy-client:
     name: Deploy client to Vercel
-    needs: [server, client]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push' && secrets.VERCEL_TOKEN != '' && secrets.VERCEL_PROJECT_ID_CLIENT != ''
+    needs: [check-secrets, server, client]
+    if: >
+      github.ref == 'refs/heads/main' &&
+      github.event_name == 'push' &&
+      needs.check-secrets.outputs.client_ready == 'true'
     runs-on: ubuntu-latest
     defaults:
       run:
