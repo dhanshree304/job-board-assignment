@@ -9,12 +9,12 @@ A full-stack job board built on the MERN stack (MongoDB, Express, React, Node) w
 
 ## Tech stack
 
-| Layer      | Choice                                                                 |
-| ---------- | ----------------------------------------------------------------------- |
-| Frontend   | React 18, TypeScript, Vite, Tailwind CSS, React Router, TanStack Query, Zustand, React Hook Form + Zod |
-| Backend    | Node.js, Express, TypeScript, Mongoose (MongoDB), JWT auth, Multer      |
-| Testing    | Jest + Supertest + mongodb-memory-server (server), `tsc --noEmit` (both) |
-| CI/CD      | GitHub Actions → Vercel (client as static SPA, server as Node serverless functions) |
+| Layer    | Choice                                                                                                 |
+| -------- | ------------------------------------------------------------------------------------------------------ |
+| Frontend | React 18, TypeScript, Vite, Tailwind CSS, React Router, TanStack Query, Zustand, React Hook Form + Zod |
+| Backend  | Node.js, Express, TypeScript, Mongoose (MongoDB), JWT auth, Multer                                     |
+| Testing  | Jest + Supertest + mongodb-memory-server (server), `tsc --noEmit` (both)                               |
+| CI/CD    | GitHub Actions → Vercel (client as static SPA, server as Node serverless functions)                    |
 
 ## Project structure
 
@@ -68,10 +68,10 @@ npm run dev    # starts the API on http://localhost:5000
 
 Seeded demo accounts (after `npm run seed`):
 
-| Role       | Email               | Password    |
-| ---------- | -------------------- | ----------- |
-| Employer   | employer@demo.io     | password123 |
-| Job seeker | jobseeker@demo.io    | password123 |
+| Role       | Email             | Password     |
+| ---------- | ----------------- | ------------ |
+| Employer   | employer@demo.io  | password@123 |
+| Job seeker | jobseeker@demo.io | password@123 |
 
 ### 2. Client
 
