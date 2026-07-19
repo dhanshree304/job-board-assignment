@@ -2,7 +2,9 @@ import axios from "axios";
 import { useAuthStore } from "@/store/authStore";
 
 export const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL ?? "/api",
+  baseURL:
+    import.meta.env.VITE_API_URL ??
+    "https://job-board-assignment-bahp.onrender.com",
 });
 
 api.interceptors.request.use((config) => {
@@ -20,7 +22,10 @@ api.interceptors.response.use(
       useAuthStore.getState().logout();
     }
     const message =
-      error.response?.data?.errors?.[0]?.message ?? error.response?.data?.message ?? error.message ?? "Something went wrong";
+      error.response?.data?.errors?.[0]?.message ??
+      error.response?.data?.message ??
+      error.message ??
+      "Something went wrong";
     return Promise.reject(new Error(message));
-  }
+  },
 );
